@@ -1,5 +1,6 @@
 package codewings.emily.synth;
 
+import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.math.Fraction;
 
 import java.util.Arrays;
@@ -16,7 +17,7 @@ public class Note implements Comparable<Note> {
     public final Pitch pitch;
 
     /**
-     * Length of the note; how many notes can fit into one measure.
+     * Length of the note; 1 = whole note.
      */
     public final Fraction length;
 
@@ -34,8 +35,7 @@ public class Note implements Comparable<Note> {
      *     A#3/24  -> pitch = A_SHARP_3, length = 1/24
      */
     public static Note parse(String note) {
-        if (note == null)
-            throw new IllegalArgumentException("Cannot parse null note");
+        Preconditions.checkNotNull(note);
 
         boolean tied = false;
         if (note.startsWith("^")) {
@@ -74,8 +74,8 @@ public class Note implements Comparable<Note> {
     @Override
     public String toString() {
         String pitchStr = pitch.name()
-                .replace("_SHARP", "#")
-                .replace("_FLAT", "#")
+                .replace("_SHARP", "♯")
+                .replace("_FLAT", "♭")
                 .replace("_", "");
         return String.format("%s[%s]", pitchStr, length.toString());
     }
