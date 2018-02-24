@@ -1,6 +1,6 @@
 package codewings.emily.synth.instr;
 
-import codewings.emily.synth.Note;
+import codewings.emily.synth.Pitch;
 import codewings.emily.synth.SoundWave;
 
 public class SineWaveGenerator implements Instrument {
@@ -15,10 +15,9 @@ public class SineWaveGenerator implements Instrument {
     private static final double DECAY_RATE = 0.62;
 
     @Override
-    public SoundWave play(Note note) {
-        double freq = note.pitch.getFrequency();
-        double length = note.length.doubleValue();
-        int numSamples = (int) (SAMPLE_RATE * length);
+    public SoundWave play(Pitch pitch, double duration) {
+        double freq = pitch.getFrequency();
+        int numSamples = (int) (SAMPLE_RATE * duration);
         double[] waveform = new double[numSamples];
 
         for (int t = 0; t < waveform.length; t++) {

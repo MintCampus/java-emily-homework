@@ -1,6 +1,6 @@
 package codewings.emily.synth.instr;
 
-import codewings.emily.synth.Note;
+import codewings.emily.synth.Pitch;
 import codewings.emily.synth.SoundWave;
 
 /**
@@ -8,7 +8,7 @@ import codewings.emily.synth.SoundWave;
  */
 public class PianoSteinwayB211 implements Instrument {
     @Override
-    public SoundWave play(Note note) {
+    public SoundWave play(Pitch pitch, double duration) {
         // TODO
         throw new UnsupportedOperationException("Not Implemented!");
     }
